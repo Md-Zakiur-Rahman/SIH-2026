@@ -269,3 +269,167 @@ Recommended demo checks:
 - Open both records from History to demonstrate selected-assessment loading.
 - Show the financial plan and PDF for an eligible margin.
 - Open Bank with the bank demo credentials and clearly identify its ledger as mock data.
+
+# Design System & Visual Language
+
+This is the current visual direction for Arthniti. New pages and changes should follow these rules so the product feels like one considered financial assessment system.
+
+## 1. Overall Design Direction
+
+- Swiss International Typographic Style with modern Swiss editorial composition.
+- A premium financial product feel rather than a generic dashboard.
+- Minimal overall, with occasional strong or heavy visual elements used to establish hierarchy.
+- More Swiss editorial than government-portal styling.
+- More sophisticated and information-focused than generic SaaS or fintech patterns.
+- Information remains the priority. Visual elements should clarify hierarchy, not decorate without purpose.
+
+## 2. Colour Palette
+
+The current core colours are:
+
+- Arthniti Navy: `#1a237e`
+- Arthniti Saffron: `#ff9933`
+- White and off-white surfaces, primarily `#fff` and `#f7f8fa`
+- Dark neutral text, including `#172033`, `#30394a`, and `#626a78`
+- Trust-oriented Ashoka-blue/national-navy usage through the Arthniti Navy token
+
+Usage:
+
+- Navy is used for the primary brand, headings, navigation, active text, and major data emphasis.
+- Saffron is used sparingly for accents, highlights, active states, rules, and important actions.
+- White and off-white are the primary page surfaces and report backgrounds.
+- Avoid introducing random colours or unreviewed brand colours.
+- Status colours are acceptable only for semantic states such as eligible/ineligible, errors, or repayment status. Current semantic examples include muted red, green, and amber tones.
+
+The Tailwind configuration defines `navy`, `saffron`, and `ink`. Existing CSS also uses the supporting neutral and rule colours above. There are no gradients in the design system.
+
+## 3. Typography
+
+The current codebase uses system-available font families; no external font package is installed or loaded.
+
+| Role | Current font | Usage |
+| --- | --- | --- |
+| Display and editorial headings | `Georgia, serif` | Login, Signup, Start, Results, Assessments, Bank, feasibility headings, and PDF report headings. |
+| Body and UI text | `Arial, sans-serif` | Body copy, labels, controls, buttons, metadata, tables, and supporting text. |
+| Financial numbers and data | `Georgia, serif` for major figures; `Arial, sans-serif` for compact table data | Large currency values use the editorial serif hierarchy; dense schedules and metadata use the UI sans-serif treatment where appropriate. |
+| Labels and captions | `Arial, sans-serif` | Kicker labels, uppercase captions, field labels, status labels, and table headers. |
+
+The hierarchy is intentionally serif display plus sans-serif interface/body. Tailwind maps this as `fontFamily.display: Georgia` and `fontFamily.sans: Arial`; `src/index.css` applies the same families directly in existing components.
+
+## 4. Layout & Grid
+
+- Use Swiss grid-based composition with strong alignment between sections.
+- Keep content aligned to consistent page edges and grid columns.
+- Use intentional asymmetry when it improves hierarchy or reading order.
+- Use whitespace deliberately, but avoid large empty areas that separate related information.
+- Prefer thin rules and dividers over unnecessary containers.
+- Group related information into clear analytical compositions.
+- Avoid stacking unrelated floating cards or adding detached dashboard widgets.
+
+## 5. Heavy Visual Elements
+
+Heavy does not mean adding many components. Preferred heavy elements are:
+
+- Oversized typography used selectively.
+- Large financial figures and assessment numbers.
+- Strong horizontal or vertical rules.
+- Asymmetric grid compositions.
+- One dominant chart or visual per analytical section.
+- Large typographic section labels used sparingly.
+
+Avoid:
+
+- Decorative blobs or floating shapes.
+- Random illustrations or excessive icons.
+- Gradients.
+- Glassmorphism or backdrop effects for ordinary page content.
+- Crypto-style graphics.
+- Excessive shadows.
+- Excessive rounded cards or pill controls.
+- Giant marketing CTAs.
+
+## 6. Page-Specific Direction
+
+### Dashboard / Recent Assessments
+
+- This is the most visually expressive application page.
+- Use strong Swiss editorial composition, oversized numbers, asymmetric grids, and heavier typography where useful.
+- Assessment records must remain readable and scannable; expression must not obscure category, location, amount, eligibility, or date.
+
+### Results / Financial Plan
+
+- Keep the page calm and information-first.
+- Financial numbers are the visual focus.
+- Use typography, grid, and rules rather than card-heavy decoration.
+- The selected assessment must remain visually clear through its category, location, and dynamic financial values.
+
+### Results / Repayment
+
+- The graph may be the dominant visual.
+- Preferred composition is the graph on the left with repayment interpretation and summary on the right.
+- Keep the quarterly repayment table full-width underneath.
+- The graph and summary should read as one analytical unit.
+
+### Results / Feasibility
+
+- Use an editorial analytical style rather than a collection of generic cards.
+- Use strong section headings, compact information blocks, and thin rules.
+- The Viability Score can act as a visual anchor, but should remain sophisticated and restrained.
+- Category and location must come from the selected assessment.
+
+### Bank / SCA
+
+- Use an institutional finance and data style.
+- Prioritize structured ledger/table hierarchy and precise alignment.
+- Use Swiss precision rather than crypto aesthetics.
+- Blockchain is visually secondary to financial transparency.
+
+### Chat
+
+- Keep the chat experience as a minimal chat-window interface.
+- Do not apply heavy dashboard decoration to the chat experience.
+
+### PDF
+
+- Use a formal financial-report treatment.
+- Keep the PDF consistent with the web Results data, selected assessment, logo, typography, and colour system.
+
+## 7. Components & UI Rules
+
+- Prefer small, square, or minimally rounded corners.
+- Avoid excessive pills.
+- Use subtle borders and thin rules.
+- Use shadows sparingly and only when they improve layering or interaction clarity.
+- Tables require disciplined column alignment and clear row separators.
+- Right-align monetary values where appropriate.
+- Use Indian currency formatting such as `₹1,00,000`.
+- Buttons should be restrained, purposeful, and visually subordinate to the information they act on unless they are the clear primary form action.
+- Preserve accessible focus states and comfortable touch targets.
+
+## 8. Responsive Design
+
+- Desktop layouts use the full Swiss grid and available horizontal space intelligently.
+- `375px` is a required breakpoint and test target.
+- Asymmetric layouts must collapse cleanly into intentional mobile compositions.
+- Never introduce page-level horizontal scrolling, clipped content, or fixed desktop-width containers.
+- Preserve information hierarchy when stacking content.
+- Recheck long Indian-formatted amounts and translated Hindi/Telugu text at mobile widths.
+
+## 9. Internationalization
+
+- English, Hindi, and Telugu are required for implemented user-facing experiences.
+- All new visible text must use the existing `src/i18n.js` dictionary.
+- Do not hardcode English UI strings in page components.
+- Test translated labels, validation messages, tables, buttons, and metadata for wrapping and clarity.
+
+## 10. Design Do / Don't
+
+| DO | DON'T |
+| --- | --- |
+| Swiss grid and strong alignment | Government-portal styling |
+| Strong typography and selective large numbers | Generic SaaS card grids |
+| Thin rules and disciplined tables | Gradients or glassmorphism |
+| Intentional asymmetry | Excessive rounding or pill controls |
+| Restrained navy and saffron | Decorative clutter or random colour |
+| Clear financial hierarchy | Crypto/Web3 aesthetics |
+| Information-first compositions | Large marketing treatment without product purpose |
