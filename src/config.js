@@ -1,0 +1,11 @@
+export const AUTH_MODE = 'mock';
+export const API_BASE = import.meta.env.VITE_API_BASE_URL || '';
+export const USE_MOCKS = import.meta.env.VITE_USE_MOCKS !== 'false';
+export const USE_ONBOARDING_API = import.meta.env.VITE_USE_ONBOARDING_API === 'true';
+export const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY || '';
+export const GEMINI_MODEL = import.meta.env.VITE_GEMINI_MODEL || 'gemini-2.5-flash';
+export const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || '';
+export const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
+export const ALGORAND_NETWORK = import.meta.env.VITE_ALGORAND_NETWORK || 'testnet';
+export const ALGORAND_NODE_URL = import.meta.env.VITE_ALGORAND_NODE_URL || '';
+export const ALGORAND_APP_ID = import.meta.env.VITE_ALGORAND_APP_ID || '';
